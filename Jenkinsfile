@@ -21,13 +21,6 @@ stages{
             }
         }
 
-        stage ('Deployments'){
-                stage ('Deploy to Staging Server'){
-                    steps {
-                        sh "scp **/*.war jenkins@${params.tomcat_stag}:C:\Users\user\eclipse-workspace\Servers\apache-tomcat-9.0.86 at localhost-config"
-                    }
-                }
-            }
-        }
+       
     }
 }
