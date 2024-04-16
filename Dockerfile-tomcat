@@ -1,0 +1,9 @@
+#Base image
+FROM apache-tomcat:9.0.86
+
+#COPY
+COPY ./target/LoginWebApp.war C:\Users\user\eclipse-workspace\Servers\apache-tomcat-9.0.86 at localhost-config\
+
+WORKDIR C:\Users\user\eclipse-workspace\Servers\apache-tomcat-9.0.86 at localhost-config\
+
+CMD ["catalina.sh", "run"]

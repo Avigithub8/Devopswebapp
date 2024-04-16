@@ -1,0 +1,5 @@
+#Base image
+FROM mysql-connector:8.0.32
+
+#COPY
+COPY ./dump/devopsfirst.sql /docker-entrypoint-initdb.d
