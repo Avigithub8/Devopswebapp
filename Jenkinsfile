@@ -23,18 +23,21 @@ pipeline {
                     echo 'Archiving the artifacts'
                     archiveArtifacts artifacts: '**/*.war'
                 }
+                
+                 winscpPublisher {
+                        // Configure the WinSCP Publisher
+                        failOnError: true,
+                        host: params.tomcat_stag,
+                        port: 22,
+                        username: 'admin',
+                        password: '',
+                        sourceFiles: '**/*.war',
+                        remoteDirectory: '/'
+                    }
             }
         }
 
-        stage('Deployments') {
-            stage('Deploy to Staging Server') {
-                steps {
-                    script {
-                        sh "scp **/*.war jenkins@${params.tomcat_stag}:\C:\Program Files\Apache Software Foundation\Tomcat 9.0_ApTomcat9\webapps"
-                    }
-                }
-            }
-        }
+       
     }
 
 
