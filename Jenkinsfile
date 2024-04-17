@@ -35,7 +35,7 @@ pipeline {
                     String tomcatPassword = 'admin';
                     String contextName = '/LoginWebApp'; // Change this to your desired context path
 
-                    sh "curl -v --user ${tomcatUsername}:${tomcatPassword} --upload-file target/LoginWebApp.war ${tomcatManagerUrl}/deploy?path=${contextName}"
+                    sh "curl -v --user ${tomcatUsername}:${tomcatPassword} --upload-file F:\devops\javadevopsproject\LoginWebApp\target\LoginWebApp.war ${tomcatManagerUrl}/deploy?path=${contextName}"
                 }
             }
         }
