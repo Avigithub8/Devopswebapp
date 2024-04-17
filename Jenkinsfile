@@ -24,18 +24,22 @@ pipeline {
                     archiveArtifacts artifacts: '**/*.war'
                 }
                 
-                 winscpPublisher {
-                        // Configure the WinSCP Publisher
-                        failOnError: true,
-                        host: params.tomcat_stag,
-                        port: 22,
-                        username: 'admin',
-                        password: '',
-                        sourceFiles: '**/*.war',
-                        remoteDirectory: '/'
-                    }
+                }
+               }
+          stage('Deploy') {
+            steps {
+               script {
+                    String tomcatUrl = 'http://localhost:8080';
+                    String tomcatManagerUrl = tomcatUrl + '/manager/text';
+                    String tomcatUsername = 'admin';
+                    String tomcatPassword = 'admin';
+                    String contextName = '/LoginWebApp'; // Change this to your desired context path
+
+                    sh "curl -v --user ${tomcatUsername}:${tomcatPassword} --upload-file target/LoginWebApp.war ${tomcatManagerUrl}/deploy?path=${contextName}"
+                }
             }
         }
+        
 
        
     }
